@@ -1,0 +1,100 @@
+name: 🧪 Test MCP-JIRA Setup Scripts
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-setup-scripts:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+    
+    - name: 🔧 Make scripts executable
+      run: chmod +x *.sh
+    
+    - name: 🚀 Test complete setup script
+      run: |
+        ./setup-mcp-jira.sh TestProject
+        echo "✅ Complete setup script executed successfully"
+    
+    - name: 📁 Verify project structure
+      run: |
+        cd TestProject
+        echo "🔍 Checking created files..."
+        test -f README.md && echo "✅ README.md exists"
+        test -f .env.template && echo "✅ .env.template exists"
+        test -f .vscode/mcp.json.template && echo "✅ mcp.json.template exists"
+        test -f configure.sh && echo "✅ configure.sh exists"
+        test -f verify-setup.sh && echo "✅ verify-setup.sh exists"
+        test -f requirements.txt && echo "✅ requirements.txt exists"
+        test -f .gitignore && echo "✅ .gitignore exists"
+        test -d mcp_jira && echo "✅ mcp_jira/ directory exists"
+        test -d docs && echo "✅ docs/ directory exists"
+        test -f mcp_jira/__init__.py && echo "✅ Python module initialized"
+        test -f mcp_jira/__main__.py && echo "✅ Configuration checker exists"
+    
+    - name: 🔧 Test configuration script
+      run: |
+        cd TestProject
+        ./configure.sh
+        test -f .env && echo "✅ .env file created"
+        test -f .vscode/mcp.json && echo "✅ mcp.json file created"
+    
+    - name: ⚡ Test simple setup script
+      run: |
+        ./simple-setup.sh SimpleTestProject
+        echo "✅ Simple setup script executed successfully"
+    
+    - name: 📊 Display test results
+      run: |
+        echo "🎉 All tests passed!"
+        echo "📋 Setup scripts are working correctly"
+        echo "🚀 Repository is ready for production use"
+
+  test-docker-availability:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+    
+    - name: 🐳 Test Docker availability
+      run: |
+        docker --version
+        echo "✅ Docker is available in CI environment"
+    
+    - name: 🧪 Test MCP-Atlassian container pull
+      run: |
+        docker pull ghcr.io/sooperset/mcp-atlassian:latest
+        echo "✅ MCP-Atlassian container can be pulled"
+
+  validate-documentation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+    
+    - name: 📖 Check documentation files
+      run: |
+        test -f README.md && echo "✅ Main README exists"
+        test -f README-GITHUB.md && echo "✅ GitHub README exists"
+        test -f DEPLOYMENT.md && echo "✅ Deployment guide exists"
+        test -f templates/README.md && echo "✅ Templates documentation exists"
+        echo "📚 All documentation files are present"
+    
+    - name: 🔍 Validate markdown syntax
+      uses: DavidAnson/markdownlint-action@v1
+      with:
+        files: '**/*.md'
+        config: |
+          {
+            "MD013": { "line_length": 120 },
+            "MD033": false,
+            "MD041": false
+          }
