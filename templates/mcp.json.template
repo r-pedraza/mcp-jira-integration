@@ -1,0 +1,34 @@
+{
+  "servers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp"
+    },
+    "mcp-atlassian": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e", "JIRA_URL",
+        "-e", "JIRA_PERSONAL_TOKEN",
+        "-e", "JIRA_SSL_VERIFY",
+        "-e", "JIRA_PROJECTS_FILTER",
+        "ghcr.io/sooperset/mcp-atlassian:latest"
+      ],
+      "env": {
+        "JIRA_URL": "https://your-jira-server.com",
+        "JIRA_PERSONAL_TOKEN": "your_personal_access_token_here",
+        "JIRA_SSL_VERIFY": "false",
+        "JIRA_PROJECTS_FILTER": "ECAPP,PROJECT2"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "jira_mcp_token",
+      "type": "promptString",
+      "description": "Enter your Personal Access Token for MCP integration with Atlassian JIRA",
+      "password": true
+    }
+  ]
+}
