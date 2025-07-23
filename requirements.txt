@@ -1,0 +1,67 @@
+# Dependencias para MCP-JIRA Integration
+# 
+# Este archivo especifica las dependencias Python necesarias para ejecutar
+# y desarrollar el proyecto de integración MCP-JIRA.
+# Dependencias principales
+# =======================
+# Model Context Protocol (MCP) - Framework principal
+mcp>=0.4.0
+# Requests - Para llamadas HTTP/API
+requests>=2.31.0
+# Atlassian Python API - Cliente oficial de Atlassian
+atlassian-python-api>=3.41.0
+# Python-dotenv - Para manejar variables de entorno
+python-dotenv>=1.0.0
+# Pydantic - Para validación de datos
+pydantic>=2.0.0
+# Typer - Para crear CLI amigable
+typer>=0.9.0
+# Rich - Para output colorido en terminal
+rich>=13.0.0
+# PyYAML - Para manejar archivos YAML
+PyYAML>=6.0
+# Dependencias de desarrollo
+# =========================
+# Pytest - Framework de testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+# Black - Formateador de código
+black>=23.0.0
+# Flake8 - Linter
+flake8>=6.0.0
+# MyPy - Type checker
+mypy>=1.5.0
+# Pre-commit - Git hooks
+pre-commit>=3.4.0
+# Isort - Organizador de imports
+isort>=5.12.0
+# Bandit - Análisis de seguridad
+bandit>=1.7.5
+# Dependencias opcionales
+# ======================
+# Jupyter - Para notebooks de ejemplo (opcional)
+jupyter>=1.0.0
+# Matplotlib - Para gráficos (opcional)
+matplotlib>=3.7.0
+# Pandas - Para análisis de datos (opcional)
+pandas>=2.0.0
+# httpx - Cliente HTTP alternativo más moderno (opcional)
+httpx>=0.24.0
+# Instalación:
+# pip install -r requirements.txt
+#
+# Para desarrollo:
+# pip install -r requirements.txt
+# pre-commit install
+#
+# Para testing:
+# pytest
+#
+# Para formateo:
+# black .
+# isort .
+#
+# Para linting:
+# flake8
+# mypy .
