@@ -89,7 +89,7 @@ jobs:
         echo "📚 All documentation files are present"
     
     - name: 🔍 Validate markdown syntax
-      uses: DavidAnson/markdownlint-action@v1
+      uses: davidanson/markdownlint-action@master
       with:
         files: '**/*.md'
         config: |
